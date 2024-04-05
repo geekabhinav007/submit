@@ -7,6 +7,8 @@ require('dotenv').config();
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -40,7 +42,7 @@ app.post('/formdata', (req, res) => {
   const form = new Form(req.body);
   form.save()
     .then(result => {
-      res.send(result);
+        res.redirect('/success.html');
     })
     .catch(err => {
       console.log(err);
